@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>生日快乐！</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            background:#000;
+            overflow:hidden;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            transition:all 1s ease;
+        }
+        body.light{
+            background:url('background.PNG') center center / cover no-repeat;
+            background-color:rgba(255,239,239,0.3);
+            background-blend-mode:darken;
+        }
+        .cake{
+            width:200px;
+            position:relative;
+            transition:opacity 0.8s ease,transform 0.2s;
+            cursor:pointer;
+            z-index:10;
+        }
+        .cake:hover{
+            transform:scale(1.1);
+        }
+        .cake:active{
+            transform:scale(0.95);
+        }
+        .candle{
+            width:12px;
+            height:60px;
+            background:#fff;
+            margin:0 auto;
+            border-radius:2px;
+            position:relative;
+        }
+        .fire{
+            width:20px;
+            height:30px;
+            background:radial-gradient(#ff9500,#ff3300);
+            border-radius:50% 50% 20% 20%;
+            position:absolute;
+            top:-25px;
+            left:-4px;
+            animation:flicker 0.3s infinite alternate;
+            transition:opacity 0.8s ease;
+            box-shadow:0 0 15px #ff7700,0 0 30px #ff4400;
+        }
+        @keyframes flicker{
+            0%{
+                transform:scale(1) skewX(-3deg);
+            }
+            100%{
+                transform:scale(1.1) skewX(3deg);
+            }
+        }
+        .tip{
+            color:#fff;
+            margin-top:30px;
+            font-size:18px;
+            transition:opacity 0.8s ease;
+            text-shadow:0 0 6px rgba(0,0,0,0.4);
+            z-index:10;
+        }
+        .text{
+            font-size:36px;
+            color:#9c2730;
+            text-shadow:1px 1px 3px rgba(255,255,255,0.6);
+            font-weight:bold;
+            opacity:0;
+            text-align:center;
+            transition:opacity 1.2s ease,transform 1.2s ease;
+            line-height:1.8;
+            z-index:10;
+            transform:translateY(25px);
+        }
+        body.light .cake,body.light .tip{
+            opacity:0;
+        }
+        body.light .text{
+            opacity:1;
+            transform:translateY(0);
+        }
+    </style>
+</head>
+<body>
+<div class="cake" id="cake">
+    <div class="candle">
+        <div class="fire" id="fire"></div>
+    </div>
+</div>
+<div class="tip">点击蜡烛</div>
+<div class="text">
+    生日快乐！<br>祝我们同桌的所有愿望都能实现
+</div>
+
+<script>
+    let bodyDom=document.body;
+    let cakeDom=document.getElementById('cake');
+
+    cakeDom.addEventListener('click',function(){
+        bodyDom.classList.add('light');
+    });
+</script>
+</body>
+</html>
